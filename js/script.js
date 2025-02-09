@@ -6,6 +6,8 @@ const pubs = [
 
 const pubList = document.getElementById("pub-list");
 
+const asdasd = "asdasd"
+
 pubs.forEach(pub => {
     const li = document.createElement("li");
     li.textContent = `${pub.name} - ${pub.address}`;
