@@ -9,37 +9,87 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background: url('images/kep.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        h2 {
-            background-color: #007bff;
-            color: white;
+        /* Oldalsáv stílusa */
+        #sidebar {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            overflow-y: auto;
             padding: 20px;
-            text-align: center;
-            margin: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
         }
 
+        #sidebar h2 {
+            margin-top: 0;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f4f4f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #sidebar ul li:hover {
+            background: #007bff;
+            color: #fff;
+        }
+
+        /* Térkép stílusa */
         #map {
-            height: 600px;
-            width: 100%;
+            flex: 1;
+            height: 800px;
+            width: calc(100% - 300px);
         }
 
-        a {
+        /* Gomb stílusa */
+        .route-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
             text-decoration: none;
-            color: #4285F4;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s ease;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .route-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .pub-image {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h2>Budapest kocsma kereső</h2>
+    
+    <!-- Oldalsáv a kocsmák listájával -->
+    <div id="sidebar">
+        <h2>Kocsmák</h2>
+        <ul id="pub-list">
+            <!-- Kocsmák listája itt lesz betöltve JavaScript-tel -->
+        </ul>
+    </div>
 
-    <!-- A térkép megjelenítésére szolgáló div -->
+    <!-- A térkép -->
     <div id="map"></div>
 
     <script>
@@ -47,22 +97,44 @@
             // Térkép inicializálása
             const map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 47.497913, lng: 19.040236 }, // Budapest koordinátái
-                zoom: 12, // Nagyítási szint
+                zoom: 12,
             });
 
             // Marker adatok tömbje
             const locations = [
-                { lat: 47.5326276, lng: 19.0358801, title: "Fonódóóóó", image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp", description: "Gecigránát lelő hely." },
-                { lat: 47.5001322, lng: 19.066806, title: "Tibigatya", image: "https://kocsmablog.hu/wp-content/uploads/tibi-atya.jpg", description: "A vicces ivós pap kocsmája." },
-                { lat: 47.5058148, lng: 19.0565602, title: "Az Öszvér", image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQwN0-cLq3vtAkGpSg6upZYLjRAbcu6ljrc5RZoXZkmoQObNT7szAUBgMCq8w6wMKDTNtvYb-4UFDGc470xr_BgCA", description: "Az Öszvér népszerű állat." },
+                {
+                    lat: 47.5326276,
+                    lng: 19.0358801,
+                    title: "Fonódó Poharazó",
+                    image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp",
+                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5326276,19.0358801",
+                    description: "<b>Nyitvatartás:</b><br>Hétfő - Csütörtök: 15:00 - 23:00<br>Péntek - Szombat: 15:00 - 24:00<br>Vasárnap: Zárva",
+
+                },
+                {
+                    lat: 47.5001322,
+                    lng: 19.066806,
+                    title: "Humbák Borkápolna Budapest",
+                    image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
+                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5001322,19.066806",
+                    description: "<b>Nyitvatartás:</b><br>Hétfő - Vasránap: 15:00 - 3:00",
+
+                },
+                {
+                    lat: 47.5058148,
+                    lng: 19.0565602,
+                    title: "Az Öszvér",
+                    image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
+                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5058148,19.0565602",
+                    description: "<b>Nyitvatartás:</b><br>Hétfő: Zárva<br>Kedd - Szombat: 15:00 - 22:00<br>Vasárnap: Zárva",
+
+                },
             ];
 
-            // Markerek és infóablakok létrehozása
-            locations.forEach((location) => {
-                // Alapértelmezett értékek beállítása
-                const image = location.image || "https://via.placeholder.com/150";
-                const description = location.description || "Nincs leírás elérhető.";
+            // Listaelem és marker kezelés
+            const pubList = document.getElementById("pub-list");
 
+            locations.forEach((location, index) => {
                 // Marker létrehozása
                 const marker = new google.maps.Marker({
                     position: { lat: location.lat, lng: location.lng },
@@ -70,33 +142,40 @@
                     title: location.title,
                 });
 
-                // Infóablak tartalma HTML formátumban
-                const infoWindowContent = `
-                    <div style="font-size: 14px; color: #333;">
-                        <h3 style="margin: 0;">${location.title}</h3>
-                        <img src="${image}" alt="${location.title}" style="width: 200px; height: auto; margin: 10px 0; border-radius: 8px;">
-                        <p>${description}</p>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}" target="_blank"
-                           style="display: inline-block; margin-top: 10px; padding: 8px 12px; background-color: #4285F4; color: white; text-decoration: none; border-radius: 4px;">
-                           Irány a kocsma
-                        </a>
-                    </div>
+                // Infóablak tartalma
+                const infoContent = `
+                <div style="text-align: center; font-family: Arial, sans-serif; max-width: 300px;">
+                <h3 style="font-size: 18px; margin-bottom: 10px;">${location.title}</h3>
+                <img class="pub-image" src="${location.image}" alt="${location.title}" 
+                  style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <p style="font-size: 14px; color: #555; margin-bottom: 15px;">${location.description}</p>
+                <a class="route-btn" href="${location.directionsUrl}" target="_blank"
+                >Irány a kocsma</a>
                 `;
 
-                // Infóablak létrehozása
                 const infoWindow = new google.maps.InfoWindow({
-                    content: infoWindowContent,
+                    content: infoContent,
                 });
+                
 
-                // Marker eseménykezelés - infóablak megnyitása kattintáskor
+                // Markerhez kattintási esemény
                 marker.addListener("click", () => {
                     infoWindow.open(map, marker);
                 });
+
+                // Listaelem létrehozása
+                const li = document.createElement("li");
+                li.textContent = location.title;
+                li.addEventListener("click", () => {
+                    map.setCenter(marker.getPosition());
+                    infoWindow.open(map, marker);
+                });
+                pubList.appendChild(li);
             });
         }
     </script>
 
-    <!-- Google Maps API betöltése az API kulcsoddal -->
+    <!-- Google Maps API betöltése -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfISgMba-SoFsP-6HsGblwEWMLBI-Hdw0&callback=initMap">
     </script>
