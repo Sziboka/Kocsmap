@@ -17,7 +17,6 @@
             overflow: hidden;
         }
 
-        /* Oldalsáv stílusa */
         #sidebar {
             width: 300px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -49,14 +48,12 @@
             color: #fff;
         }
 
-        /* Térkép stílusa */
         #map {
             flex: 1;
             height: 800px;
             width: calc(100% - 300px);
         }
 
-        /* Gomb stílusa */
         .route-btn {
             margin-top: 10px;
             padding: 10px 15px;
@@ -66,6 +63,8 @@
             border-radius: 5px;
             display: inline-block;
             transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .route-btn:hover {
@@ -77,105 +76,108 @@
             border-radius: 5px;
             margin-top: 10px;
         }
+
+        #description-container {
+            display: none;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
-
 <body>
-    
-    <!-- Oldalsáv a kocsmák listájával -->
     <div id="sidebar">
         <h2>Kocsmák</h2>
-        <ul id="pub-list">
-            <!-- Kocsmák listája itt lesz betöltve JavaScript-tel -->
-        </ul>
+        <ul id="pub-list"></ul>
     </div>
 
-    <!-- A térkép -->
     <div id="map"></div>
+    
+    <div id="description-container"></div>
 
     <script>
+        const pubs = [
+            {
+                name: "Fonódó Poharazó",
+                lat: 47.5326276,
+                lng: 19.0358801,
+                image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp",
+                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5213767,19.0364992",
+                description: "Hétfő - Csütörtök: 15:00 - 23:00\nPéntek - Szombat: 15:00 - 24:00\nVasárnap: Zárva",
+                details: "A Fonódó Poharazó egy hangulatos kocsma Budapest szívében. Széles italválasztékkal és barátságos környezettel várja vendégeit."
+            },
+            {
+                name: "Humbák Borkápolna Budapest",
+                lat: 47.5001286,
+                lng: 19.0693809,
+                image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
+                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5001286,19.0693809",
+                description: "Hétfő - Vasárnap: 15:00 - 3:00",
+                details: "A Humbák Borkápolna egy különleges hangulatú borház, ahol a minőségi borok mellett kellemes környezetben töltheted az időd."
+            },
+            {
+                name: "Az Öszvér",
+                lat: 47.5060809,
+                lng: 19.0596251,
+                image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
+                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5060809,19.0596251",
+                description: "Hétfő: Zárva\nKedd - Szombat: 15:00 - 22:00\nVasárnap: Zárva",
+                details: "Az Öszvér egy egyedi hangulatú kocsma, ahol a klasszikus pub hangulat találkozik a modern designnal."
+            },
+            {
+                name: "Guri Serház Körút",
+                lat: 47.5001322,
+                lng: 19.066806,
+                image: "https://media-cdn.tripadvisor.com/media/photo-p/2a/d8/54/1f/great-bar.jpg",
+                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5035148,19.0642699",
+                description: "Hétfő: 15:00 - 24:00\nKedd - Csütörtök: 15:00 - 1:00\nPéntek - Szombat: 15:00 - 2:00\nVasárnap: 15:00 - 24:00",
+                details: "A Guri Serház a sörkedvelők paradicsoma, ahol a különleges csapolt sörök mellett finom ételeket is kóstolhatsz."
+            }
+        ];
+
         function initMap() {
-            // Térkép inicializálása
             const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 47.497913, lng: 19.040236 }, // Budapest koordinátái
+                center: { lat: 47.497913, lng: 19.040236 },
                 zoom: 12,
             });
 
-            // Marker adatok tömbje
-            const locations = [
-                {
-                    lat: 47.5326276,
-                    lng: 19.0358801,
-                    title: "Fonódó Poharazó",
-                    image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp",
-                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5213767,19.0364992",
-                    description: "<b>Nyitvatartás:</b><br>Hétfő - Csütörtök: 15:00 - 23:00<br>Péntek - Szombat: 15:00 - 24:00<br>Vasárnap: Zárva",
-
-                },
-                {
-                    lat: 47.5001286,
-                    lng: 19.0693809,
-                    title: "Humbák Borkápolna Budapest",
-                    image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
-                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5001286,19.0693809",
-                    description: "<b>Nyitvatartás:</b><br>Hétfő - Vasárnap: 15:00 - 3:00",
-
-                },
-                {
-                    lat: 47.5060809,
-                    lng: 19.0596251,
-                    title: "Az Öszvér",
-                    image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
-                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5060809,19.0596251",
-                    description: "<b>Nyitvatartás:</b><br>Hétfő: Zárva<br>Kedd - Szombat: 15:00 - 22:00<br>Vasárnap: Zárva",
-
-                },
-                {
-                    lat: 47.5001322,
-                    lng: 19.066806,
-                    title: "Guri Serház Körút",
-                    image: "https://scontent-vie1-1.xx.fbcdn.net/v/t39.30808-6/257412771_124426276686366_6573942134253783756_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=RzmCfn3EwNEQ7kNvgGgHD5T&_nc_oc=Adhmrsh1B3SdDohBnRATgvYuFc6vtZ-CoTmK0S1FlvtjnwOxDZyY1dUjVi0KVeNzH7yrvwMxmDoZdNhSJFXaxqTP&_nc_zt=23&_nc_ht=scontent-vie1-1.xx&_nc_gid=AV7zPmTR8QGStb52Q5BjqYh&oh=00_AYB1lBa84O1w5do_YWj8zVNedbf3iFKAQkuLJG02x_I7fg&oe=67B17305",
-                    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5035148,19.0642699",
-                    description: "<b>Nyitvatartás:</b><br>Hétfő: 15:00 - 24:00<br>Kedd - Csütörtök: 15:00 - 1:00<br>Péntek - Szombat: 15:00 - 2:00 <br>Vasárnap: 15:00 - 24:00",
-
-                },
-            ];
-
-            // Listaelem és marker kezelés
             const pubList = document.getElementById("pub-list");
 
-            locations.forEach((location, index) => {
-                // Marker létrehozása
+            pubs.forEach((pub, index) => {
                 const marker = new google.maps.Marker({
-                    position: { lat: location.lat, lng: location.lng },
+                    position: { lat: pub.lat, lng: pub.lng },
                     map: map,
-                    title: location.title,
+                    title: pub.name,
                 });
 
-                // Infóablak tartalma
                 const infoContent = `
-                <div style="text-align: center; font-family: Arial, sans-serif; max-width: 300px;">
-                <h3 style="font-size: 18px; margin-bottom: 10px;">${location.title}</h3>
-                <img class="pub-image" src="${location.image}" alt="${location.title}" 
-                  style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
-                <p style="font-size: 14px; color: #555; margin-bottom: 15px;">${location.description}</p>
-                <a class="route-btn" href="${location.directionsUrl}" target="_blank"
-                >Irány a kocsma</a>
+                    <div style="text-align: center; font-family: Arial, sans-serif; max-width: 300px;">
+                        <h3 style="font-size: 18px; margin-bottom: 10px;">${pub.name}</h3>
+                        <img class="pub-image" src="${pub.image}" alt="${pub.name}" 
+                            style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                        <p style="font-size: 14px; color: #555; margin-bottom: 15px;">${pub.description.replace(/\n/g, '<br>')}</p>
+                        <div style="display: flex; justify-content: space-between; gap: 10px;">
+                            <button class="route-btn" onclick='showDetails("${pub.name}", "${pub.details}")'>Részletek</button>
+                            <a class="route-btn" href="${pub.directionsUrl}" target="_blank">Irány a kocsma</a>
+                        </div>
+                    </div>
                 `;
 
                 const infoWindow = new google.maps.InfoWindow({
                     content: infoContent,
                 });
-                
 
-                // Markerhez kattintási esemény
                 marker.addListener("click", () => {
                     infoWindow.open(map, marker);
                 });
 
-                // Listaelem létrehozása
                 const li = document.createElement("li");
-                li.textContent = location.title;
+                li.textContent = pub.name;
                 li.addEventListener("click", () => {
                     map.setCenter(marker.getPosition());
                     infoWindow.open(map, marker);
@@ -183,11 +185,24 @@
                 pubList.appendChild(li);
             });
         }
+
+        function showDetails(title, details) {
+            const container = document.getElementById('description-container');
+            container.innerHTML = `
+                <h3>${title}</h3>
+                <p>${details}</p>
+                <button class="route-btn" onclick="hideDetails()">Bezár</button>
+            `;
+            container.style.display = 'block';
+        }
+
+        function hideDetails() {
+            document.getElementById('description-container').style.display = 'none';
+        }
     </script>
 
-    <!-- Google Maps API betöltése -->
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfISgMba-SoFsP-6HsGblwEWMLBI-Hdw0&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfISgMba-SoFsP-6HsGblwEWMLBI-Hdw0&callback=initMap">
     </script>
 </body>
 </html>
