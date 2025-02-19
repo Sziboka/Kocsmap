@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": "vue-cli-service build && gh-pages -d dist"
+  }
+}
