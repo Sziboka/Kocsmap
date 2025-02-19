@@ -1,17 +1,15 @@
-<!-- filepath: /kocsmap-vue/src/App.vue -->
 <template>
-  <div id="app">
-    <MapComponent />
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import MapComponent from './components/MapComponent.vue';
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    MapComponent
+    HelloWorld
   }
 }
 </script>
