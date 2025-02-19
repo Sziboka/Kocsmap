@@ -102,43 +102,475 @@
 
     <script>
         const pubs = [
-            {
-                name: "Fonódó Poharazó",
-                lat: 47.5326276,
-                lng: 19.0358801,
-                image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp",
-                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5213767,19.0364992",
-                description: "Hétfő - Csütörtök: 15:00 - 23:00\nPéntek - Szombat: 15:00 - 24:00\nVasárnap: Zárva",
-                details: "A Fonódó Poharazó egy hangulatos kocsma Budapest szívében. Széles italválasztékkal és barátságos környezettel várja vendégeit."
-            },
-            {
-                name: "Humbák Borkápolna Budapest",
-                lat: 47.5001286,
-                lng: 19.0693809,
-                image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
-                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5001286,19.0693809",
-                description: "Hétfő - Vasárnap: 15:00 - 3:00",
-                details: "A Humbák Borkápolna egy különleges hangulatú borház, ahol a minőségi borok mellett kellemes környezetben töltheted az időd."
-            },
-            {
-                name: "Az Öszvér",
-                lat: 47.5060809,
-                lng: 19.0596251,
-                image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
-                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5060809,19.0596251",
-                description: "Hétfő: Zárva\nKedd - Szombat: 15:00 - 22:00\nVasárnap: Zárva",
-                details: "Az Öszvér egy egyedi hangulatú kocsma, ahol a klasszikus pub hangulat találkozik a modern designnal."
-            },
-            {
-                name: "Guri Serház Körút",
-                lat: 47.5001322,
-                lng: 19.066806,
-                image: "https://media-cdn.tripadvisor.com/media/photo-p/2a/d8/54/1f/great-bar.jpg",
-                directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5035148,19.0642699",
-                description: "Hétfő: 15:00 - 24:00\nKedd - Csütörtök: 15:00 - 1:00\nPéntek - Szombat: 15:00 - 2:00\nVasárnap: 15:00 - 24:00",
-                details: "A Guri Serház a sörkedvelők paradicsoma, ahol a különleges csapolt sörök mellett finom ételeket is kóstolhatsz."
-            }
-        ];
+    {
+        name: "Fonódó Poharazó",
+        lat: 47.5326276,
+        lng: 19.0358801,
+        image: "https://www.ittjartam.hu/profil/zigzag-images/fonodo-poharazo-95677-350x262.webp",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5213767,19.0364992",
+        description: "Hétfő - Csütörtök: 15:00 - 23:00\nPéntek - Szombat: 15:00 - 24:00\nVasárnap: Zárva",
+        details: "A Fonódó Poharazó egy hangulatos kocsma Budapest szívében. Széles italválasztékkal és barátságos környezettel várja vendégeit."
+    },
+    {
+        name: "Humbák Borkápolna Budapest",
+        lat: 47.5001286,
+        lng: 19.0693809,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5001286,19.0693809",
+        description: "Hétfő - Vasárnap: 15:00 - 3:00",
+        details: "A Humbák Borkápolna egy különleges hangulatú borház, ahol a minőségi borok mellett kellemes környezetben töltheted az időd."
+    },
+    {
+        name: "Az Öszvér",
+        lat: 47.5060809,
+        lng: 19.0596251,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5060809,19.0596251",
+        description: "Hétfő: Zárva\nKedd - Szombat: 15:00 - 22:00\nVasárnap: Zárva",
+        details: "Az Öszvér egy egyedi hangulatú kocsma, ahol a klasszikus pub hangulat találkozik a modern designnal."
+    },
+    {
+        name: "Guri Serház Körút",
+        lat: 47.5001322,
+        lng: 19.066806,
+        image: "https://media-cdn.tripadvisor.com/media/photo-p/2a/d8/54/1f/great-bar.jpg",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.5035148,19.0642699",
+        description: "Hétfő: 15:00 - 24:00\nKedd - Csütörtök: 15:00 - 1:00\nPéntek - Szombat: 15:00 - 2:00\nVasárnap: 15:00 - 24:00",
+        details: "A Guri Serház a sörkedvelők paradicsoma, ahol a különleges csapolt sörök mellett finom ételeket is kóstolhatsz."
+    },
+    {
+        name: "Krak'n Town",
+        lat: 47.4978421,
+        lng: 19.0644521,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNxHgqBX9XhU5W9lKB_7Eq9jYj8pB_6AuCX-kA=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978421,19.0644521",
+        description: "Hétfő - Csütörtök: 16:00 - 02:00\nPéntek - Szombat: 16:00 - 04:00\nVasárnap: 16:00 - 02:00",
+        details: "A Krak'n Town egy underground pub, ahol a különleges kraftsörök és egyedi hangulat várja a vendégeket."
+    },
+    {
+        name: "Kisüzem",
+        lat: 47.4989012,
+        lng: 19.0636789,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989012,19.0636789",
+        description: "Kedd - Vasárnap: 18:00 - 02:00\nHétfő: Zárva",
+        details: "A Kisüzem egy kultikus romkocsma, ahol művészek és értelmiségiek találkoznak egy jó sör mellett."
+    },
+    {
+        name: "Központ",
+        lat: 47.4986543,
+        lng: 19.0645321,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4986543,19.0645321",
+        description: "Hétfő - Vasárnap: 16:00 - 02:00",
+        details: "A Központ egy modern bár a körút szívében, ahol minőségi italok és rendszeres kulturális programok várják a vendégeket."
+    },
+    {
+        name: "Púder Bárszínház",
+        lat: 47.4956789,
+        lng: 19.0678901,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4956789,19.0678901",
+        description: "Kedd - Vasárnap: 18:00 - 04:00\nHétfő: Zárva",
+        details: "A Púder egy egyedi hangulatú színház-bár kombináció, ahol előadások és koncertek mellett ihatsz egy jót."
+    },
+    {
+        name: "Csendes Vintage Bar",
+        lat: 47.4912345,
+        lng: 19.0654321,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4912345,19.0654321",
+        description: "Hétfő - Vasárnap: 12:00 - 02:00",
+        details: "A Csendes egy vintage stílusú bár, ahol a retro dekoráció és a különleges italok teremtik meg a hangulatot."
+    },
+    {
+        name: "Élesztő Craft Beer Garden",
+        lat: 47.4934567,
+        lng: 19.0667890,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4934567,19.0667890",
+        description: "Hétfő - Vasárnap: 15:00 - 02:00",
+        details: "Az Élesztő Budapest egyik legjobb kraft söröző kertje, ahol több mint 20 csapolt sör közül választhatsz."
+    },
+    {
+        name: "Kuplung",
+        lat: 47.4945678,
+        lng: 19.0656789,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4945678,19.0656789",
+        description: "Kedd - Szombat: 18:00 - 04:00\nVasárnap - Hétfő: Zárva",
+        details: "A Kuplung egy volt autószerelő műhelyből átalakított romkocsma, ahol koncertek és bulik várják a szórakozni vágyókat."
+    },
+    {
+        name: "Szimpla Kert",
+        lat: 47.4967890,
+        lng: 19.0634567,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4967890,19.0634567",
+        description: "Hétfő - Vasárnap: 12:00 - 04:00",
+        details: "A Szimpla Kert Budapest első romkocsmája, ahol egyedi dekoráció és változatos programok várják a látogatókat."
+    },
+    {
+        name: "Fogas Ház",
+        lat: 47.4978901,
+        lng: 19.0645678,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978901,19.0645678",
+        description: "Szerda - Szombat: 22:00 - 06:00\nVasárnap - Kedd: Zárva",
+        details: "A Fogas Ház egy többszintes szórakozóhely, ahol különböző zenei stílusok és hangulatok várják a bulizni vágyókat."
+    },
+    {
+        name: "Ellátó Kert",
+        lat: 47.4989012,
+        lng: 19.0656789,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989012,19.0656789",
+        description: "Hétfő - Vasárnap: 16:00 - 02:00",
+        details: "Az Ellátó Kert egy hangulatos kerthelyiséggel rendelkező romkocsma, ahol finom ételek és italok várják a vendégeket."
+    },
+    {
+        name: "Hintaló Iszoda",
+        lat: 47.4956789,
+        lng: 19.0678432,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4956789,19.0678432",
+        description: "Hétfő - Vasárnap: 16:00 - 02:00",
+        details: "A Hintaló Iszoda egy barátságos kocsma, ahol a művészek és helyiek találkoznak. Rendszeres kiállításokkal és kulturális programokkal várják a vendégeket."
+    },
+    {
+        name: "Fekete Kutya",
+        lat: 47.4967891,
+        lng: 19.0645671,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4967891,19.0645671",
+        description: "Kedd - Vasárnap: 17:00 - 02:00\nHétfő: Zárva",
+        details: "A Fekete Kutya egy hangulatos bár, ahol minőségi italok és finom falatok várják a vendégeket. Különleges boraik és koktéljaik népszerűek."
+    },
+    {
+        name: "Építész Pince",
+        lat: 47.4978432,
+        lng: 19.0656123,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978432,19.0656123",
+        description: "Hétfő - Szombat: 18:00 - 02:00\nVasárnap: Zárva",
+        details: "Az Építész Pince egy klasszikus budapesti kocsma, ahol a szakmabeliek és az egyetemisták találkoznak. Kedvező árak és jó hangulat jellemzi."
+    },
+    {
+        name: "Lámpás",
+        lat: 47.4989123,
+        lng: 19.0667234,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNxHgqBX9XhU5W9lKB_7Eq9jYj8pB_6AuCX-kA=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989123,19.0667234",
+        description: "Kedd - Vasárnap: 18:00 - 04:00\nHétfő: Zárva",
+        details: "A Lámpás egy underground koncerthelyszín és kocsma, ahol élőzene és jó hangulat vár. Rendszeres jazzkoncertekkel és jam sessionökkel."
+    },
+    {
+        name: "Csángó",
+        lat: 47.4990234,
+        lng: 19.0678345,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMEL_nHbQMr9Qee57D9OnsoYZ38TEzqAl7FmIm7=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4990234,19.0678345",
+        description: "Hétfő - Vasárnap: 12:00 - 24:00",
+        details: "A Csángó egy autentikus magyar kocsma, ahol házias ételek és jó borok várják a vendégeket. Családias hangulat és kedves kiszolgálás jellemzi."
+    },
+    {
+        name: "400 Bar",
+        lat: 47.4945678,
+        lng: 19.0689456,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNUj6XgeetdES8alS33MWOlTsV9ezQUyiYHNo5A=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4945678,19.0689456",
+        description: "Szerda - Szombat: 20:00 - 04:00\nVasárnap - Kedd: Zárva",
+        details: "A 400 Bar egy népszerű szórakozóhely, ahol elektronikus zene és táncparkett vár. Rendszeres DJ szettekkel és tematikus bulikkal."
+    },
+    {
+        name: "Zsiráf",
+        lat: 47.4934567,
+        lng: 19.0690567,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4934567,19.0690567",
+        description: "Hétfő - Vasárnap: 16:00 - 02:00",
+        details: "A Zsiráf egy barátságos kocsma, ahol társasjátékok és jó sörök várják a vendégeket. Rendszeres kvízestekkel és játékestekkel."
+    },
+    {
+        name: "Potkulcs",
+        lat: 47.4923678,
+        lng: 19.0701678,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4923678,19.0701678",
+        description: "Kedd - Vasárnap: 18:00 - 02:00\nHétfő: Zárva",
+        details: "A Potkulcs egy rejtett gyöngyszem, ahol művészek és értelmiségiek találkoznak. Különleges atmoszféra és válogatott italok jellemzik."
+    },
+    {
+        name: "Udvarrom",
+        lat: 47.4912789,
+        lng: 19.0712789,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4912789,19.0712789",
+        description: "Szerda - Szombat: 16:00 - 24:00\nVasárnap - Kedd: Zárva",
+        details: "Az Udvarrom egy hangulatos kerthelyiséggel rendelkező kocsma, ahol nyáron szabadtéri filmvetítések és koncertek várják a vendégeket."
+    },
+    {
+        name: "Wichmann",
+        lat: 47.4901890,
+        lng: 19.0723890,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4901890,19.0723890",
+        description: "Hétfő - Szombat: 12:00 - 22:00\nVasárnap: Zárva",
+        details: "A Wichmann egy legendás kocsma, ahol az idő megállt. Autentikus budapesti hangulat és kedvező árak jellemzik."
+    },
+    {
+        name: "Kőleves Kert",
+        lat: 47.4989901,
+        lng: 19.0634901,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989901,19.0634901",
+        description: "Kedd - Vasárnap: 12:00 - 24:00\nHétfő: Zárva",
+        details: "A Kőleves Kert egy népszerű romkert, ahol finom ételek és italok mellett élvezheted a szabadtéri hangulatot."
+    },
+    {
+        name: "Dzzs Bár",
+        lat: 47.4978912,
+        lng: 19.0645912,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978912,19.0645912",
+        description: "Szerda - Szombat: 20:00 - 04:00\nVasárnap - Kedd: Zárva",
+        details: "A Dzzs Bár egy jazz klub és kocsma, ahol élőzene és különleges koktélok várnak. Rendszeres koncertekkel és jam sessionökkel."
+    },
+    {
+        name: "Vittula",
+        lat: 47.4967923,
+        lng: 19.0656923,
+        image: "https://lh3.googleusercontent.com/p/AF1QipMZ9Q8v7YQ5X8Z9Y5Z9X8Z9Y5Z9X8Z9Y5Z9=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4967923,19.0656923",
+        description: "Hétfő - Vasárnap: 18:00 - 04:00",
+        details: "A Vittula egy underground kocsma, ahol alternatív zene és különleges hangulat vár. Népszerű a művészek és egyetemisták körében."
+    },
+    {
+        name: "Telep",
+        lat: 47.4956934,
+        lng: 19.0667934,
+        image: "https://lh3.googleusercontent.com/p/AF1QipNQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4956934,19.0667934",
+        description: "Kedd - Szombat: 16:00 - 24:00\nVasárnap - Hétfő: Zárva",
+        details: "A Telep egy galéria és bár, ahol kiállítások és kulturális események mellett ihatsz egy jót. Népszerű találkozóhely művészek körében."
+    },
+    {
+        name: "Massolit Books & Café",
+        lat: 47.4945945,
+        lng: 19.0678945,
+        image: "https://lh3.googleusercontent.com/p/AF1QipP8V8iHfhQJ7q5YQJ_8F9_5WJQZ5K5Q5X5Zv8Y=s680-w680-h510",
+        directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4945945,19.0678945",
+        description: "Hétfő - Vasárnap: 09:00 - 22:00",
+        details: "A Massolit egy könyvesbár, ahol angol nyelvű könyvek és finom kávék mellett töltheted el az időd. Békés, intellektuális légkör jellemzi."
+    },
+    {
+    name: "Kőbárány",
+    lat: 47.4934556,
+    lng: 19.0689956,
+    image: "https://lh3.googleusercontent.com/placeholder/bar1",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4934556,19.0689956",
+    description: "Hétfő - Szombat: 16:00 - 02:00\nVasárnap: Zárva",
+    details: "A Kőbárány egy hangulatos pincekocsma, ahol házi pálinkák és kézműves sörök várják a vendégeket."
+},
+{
+    name: "Macska",
+    lat: 47.4923567,
+    lng: 19.0701567,
+    image: "https://lh3.googleusercontent.com/placeholder/bar2",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4923567,19.0701567",
+    description: "Kedd - Vasárnap: 17:00 - 01:00\nHétfő: Zárva",
+    details: "A Macska egy csendes, barátságos hely, ahol társasjátékok és finom borok várják a vendégeket."
+},
+{
+    name: "Bordó Bisztró",
+    lat: 47.4912678,
+    lng: 19.0712678,
+    image: "https://lh3.googleusercontent.com/placeholder/bar3",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4912678,19.0712678",
+    description: "Hétfő - Vasárnap: 12:00 - 24:00",
+    details: "A Bordó Bisztró egy francia stílusú borbár, ahol válogatott borok és sajtok várják a vendégeket."
+},
+{
+    name: "Kakas",
+    lat: 47.4901789,
+    lng: 19.0723789,
+    image: "https://lh3.googleusercontent.com/placeholder/bar4",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4901789,19.0723789",
+    description: "Szerda - Vasárnap: 16:00 - 02:00\nHétfő - Kedd: Zárva",
+    details: "A Kakas egy régi stílusú kocsma modern köntösben, ahol házi készítésű ételek és italok várják a vendégeket."
+},
+{
+    name: "Kék Róka",
+    lat: 47.4989890,
+    lng: 19.0634890,
+    image: "https://lh3.googleusercontent.com/placeholder/bar5",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989890,19.0634890",
+    description: "Hétfő - Szombat: 18:00 - 04:00\nVasárnap: Zárva",
+    details: "A Kék Róka egy underground elektronikus zenei klub és bár, ahol DJ-k és élő fellépők váltják egymást."
+},
+{
+    name: "Vasmacska",
+    lat: 47.4978901,
+    lng: 19.0645901,
+    image: "https://lh3.googleusercontent.com/placeholder/bar6",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978901,19.0645901",
+    description: "Kedd - Vasárnap: 16:00 - 24:00\nHétfő: Zárva",
+    details: "A Vasmacska egy tengerész tematikájú kocsma, ahol rum különlegességek és tengeri ételek várják a vendégeket."
+},
+{
+    name: "Légyott",
+    lat: 47.4967912,
+    lng: 19.0656912,
+    image: "https://lh3.googleusercontent.com/placeholder/bar7",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4967912,19.0656912",
+    description: "Hétfő - Vasárnap: 14:00 - 02:00",
+    details: "A Légyott egy romantikus hangulatú bár, ahol koktélok és élőzene várja a párokat és baráti társaságokat."
+},
+{
+    name: "Tintahal",
+    lat: 47.4956923,
+    lng: 19.0667923,
+    image: "https://lh3.googleusercontent.com/placeholder/bar8",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4956923,19.0667923",
+    description: "Szerda - Szombat: 18:00 - 02:00\nVasárnap - Kedd: Zárva",
+    details: "A Tintahal egy kreatív kocsma, ahol művészek alkotásai díszítik a falakat és különleges koktélok várják a vendégeket."
+},
+{
+    name: "Nyugi",
+    lat: 47.4945934,
+    lng: 19.0678934,
+    image: "https://lh3.googleusercontent.com/placeholder/bar9",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4945934,19.0678934",
+    description: "Hétfő - Vasárnap: 12:00 - 23:00",
+    details: "A Nyugi egy csendes, könyvtár hangulatú bár, ahol békés környezetben olvashatsz egy jó könyvet vagy beszélgethetsz."
+},
+{
+    name: "Fészek",
+    lat: 47.4934945,
+    lng: 19.0689945,
+    image: "https://lh3.googleusercontent.com/placeholder/bar10",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4934945,19.0689945",
+    description: "Kedd - Vasárnap: 16:00 - 01:00\nHétfő: Zárva",
+    details: "A Fészek egy otthonos hangulatú bár, ahol kényelmes fotelek és válogatott italok várják a vendégeket."
+},
+{
+    name: "Sólyom",
+    lat: 47.4923956,
+    lng: 19.0701956,
+    image: "https://lh3.googleusercontent.com/placeholder/bar11",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4923956,19.0701956",
+    description: "Hétfő - Szombat: 17:00 - 02:00\nVasárnap: Zárva",
+    details: "A Sólyom egy sportos hangulatú bár, ahol sportközvetítések és jó sörök várják a vendégeket."
+},
+{
+    name: "Gödör",
+    lat: 47.4912967,
+    lng: 19.0712967,
+    image: "https://lh3.googleusercontent.com/placeholder/bar12",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4912967,19.0712967",
+    description: "Szerda - Vasárnap: 18:00 - 04:00\nHétfő - Kedd: Zárva",
+    details: "A Gödör egy underground zenei klub, ahol alternatív zenekarok és DJ-k lépnek fel rendszeresen."
+},
+{
+    name: "Csipesz",
+    lat: 47.4901978,
+    lng: 19.0723978,
+    image: "https://lh3.googleusercontent.com/placeholder/bar13",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4901978,19.0723978",
+    description: "Hétfő - Vasárnap: 16:00 - 24:00",
+    details: "A Csipesz egy kreatív bár, ahol művészeti workshopok és kiállítások mellett ihatsz egy jót."
+},
+{
+    name: "Garázs",
+    lat: 47.4989989,
+    lng: 19.0634989,
+    image: "https://lh3.googleusercontent.com/placeholder/bar14",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989989,19.0634989",
+    description: "Kedd - Szombat: 18:00 - 02:00\nVasárnap - Hétfő: Zárva",
+    details: "A Garázs egy autó-tematikájú bár, ahol veterán autók között ihatsz egy sört vagy koktélt."
+},
+{
+    name: "Mérleg",
+    lat: 47.4978990,
+    lng: 19.0645990,
+    image: "https://lh3.googleusercontent.com/placeholder/bar15",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4978990,19.0645990",
+    description: "Hétfő - Vasárnap: 11:00 - 23:00",
+    details: "A Mérleg egy borbár és étterem, ahol sommelier segít a borválasztásban és finom falatok várják a vendégeket."
+},
+{
+    name: "Pingvin",
+    lat: 47.4967991,
+    lng: 19.0656991,
+    image: "https://lh3.googleusercontent.com/placeholder/bar16",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4967991,19.0656991",
+    description: "Szerda - Vasárnap: 16:00 - 02:00\nHétfő - Kedd: Zárva",
+    details: "A Pingvin egy jégbár, ahol különleges koktélok és fagyasztott vodkák várják a vendégeket."
+},
+{
+    name: "Harang",
+    lat: 47.4956992,
+    lng: 19.0667992,
+    image: "https://lh3.googleusercontent.com/placeholder/bar17",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4956992,19.0667992",
+    description: "Hétfő - Szombat: 12:00 - 24:00\nVasárnap: Zárva",
+    details: "A Harang egy templomból átalakított bár, ahol különleges atmoszféra és válogatott italok várják a vendégeket."
+},
+{
+    name: "Lámpás Udvar",
+    lat: 47.4945993,
+    lng: 19.0678993,
+    image: "https://lh3.googleusercontent.com/placeholder/bar18",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4945993,19.0678993",
+    description: "Kedd - Vasárnap: 17:00 - 02:00\nHétfő: Zárva",
+    details: "A Lámpás Udvar egy hangulatos kerthelyiséggel rendelkező bár, ahol nyári estéken szabadtéri mozi és koncertek várják a vendégeket."
+},
+{
+    name: "Szürke",
+    lat: 47.4934994,
+    lng: 19.0689994,
+    image: "https://lh3.googleusercontent.com/placeholder/bar19",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4934994,19.0689994",
+    description: "Hétfő - Vasárnap: 14:00 - 02:00",
+    details: "A Szürke egy minimalista designbár, ahol modern koktélok és elektronikus zene várja a vendégeket."
+},
+{
+    name: "Zöld Kapu",
+    lat: 47.4923995,
+    lng: 19.0701995,
+    image: "https://lh3.googleusercontent.com/placeholder/bar20",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4923995,19.0701995",
+    description: "Szerda - Szombat: 16:00 - 24:00\nVasárnap - Kedd: Zárva",
+    details: "A Zöld Kapu egy környezettudatos bár, ahol bio borok és vegán ételek várják a vendégeket."
+},
+{
+    name: "Bagoly",
+    lat: 47.4912996,
+    lng: 19.0712996,
+    image: "https://lh3.googleusercontent.com/placeholder/bar21",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4912996,19.0712996",
+    description: "Hétfő - Vasárnap: 18:00 - 04:00",
+    details: "A Bagoly egy éjszakai bár, ahol late night menü és különleges koktélok várják az éjszakai baglyokat."
+},
+{
+    name: "Kávéház",
+    lat: 47.4901997,
+    lng: 19.0723997,
+    image: "https://lh3.googleusercontent.com/placeholder/bar22",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4901997,19.0723997",
+    description: "Kedd - Vasárnap: 10:00 - 22:00\nHétfő: Zárva",
+    details: "A Kávéház egy klasszikus budapesti kávézó és bár, ahol sütemények és alkoholos kávék várják a vendégeket."
+},
+{
+    name: "Vaskakas",
+    lat: 47.4989998,
+    lng: 19.0634998,
+    image: "https://lh3.googleusercontent.com/placeholder/bar23",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=47.4989998,19.0634998",
+    description: "Hétfő - Szombat: 16:00 - 02:00\nVasárnap: Zárva",
+    details: "A Vaskakas egy középkori hangulatú kocsma, ahol házi sörök és különleges ételek várják a vendégeket."
+}
+];
 
         function initMap() {
             const map = new google.maps.Map(document.getElementById("map"), {
